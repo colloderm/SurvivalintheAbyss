@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Systems\Graphics.cpp" />
+    <ClCompile Include="Systems\Keyboard.cpp" />
+    <ClCompile Include="Systems\Mouse.cpp" />
+    <ClCompile Include="Systems\Time.cpp" />
+    <ClCompile Include="Systems\Window.cpp" />
+    <ClCompile Include="Utilities\Gui.cpp" />
+    <ClCompile Include="Framework.cpp" />
+    <ClCompile Include="Renders\IA\VertexBuffer.cpp" />
+    <ClCompile Include="Renders\IA\IndexBuffer.cpp" />
+    <ClCompile Include="Renders\IA\InputLayout.cpp" />
+    <ClCompile Include="Renders\Resources\VertexType.cpp" />
+    <ClCompile Include="Renders\Shaders\IShader.cpp" />
+    <ClCompile Include="Renders\Shaders\VertexShader.cpp" />
+    <ClCompile Include="Renders\Shaders\PixelShader.cpp" />
+    <ClCompile Include="Geomatries\Rect.cpp" />
+    <ClCompile Include="Utilities\BoundingBox.cpp" />
+    <ClCompile Include="Utilities\Random.cpp" />
+    <ClCompile Include="Geomatries\TextureRect.cpp" />
+    <ClCompile Include="Geomatries\ShadedTexture.cpp" />
+    <ClCompile Include="Utilities\Path.cpp" />
+    <ClCompile Include="Utilities\String.cpp" />
+    <ClCompile Include="Renders\States.cpp" />
+    <ClCompile Include="Utilities\Animator.cpp" />
+    <ClCompile Include="Renders\Resources\Texture2D.cpp" />
+    <ClCompile Include="Geomatries\AnimationRect.cpp" />
+    <ClCompile Include="Characters\Wolf.cpp" />
+    <ClCompile Include="Systems\Camera.cpp" />
+    <ClCompile Include="Systems\Sounds.cpp" />
+    <ClCompile Include="Utilities\DirectHelper.cpp" />
+    <ClCompile Include="Utilities\FileStream.cpp" />
+    <ClCompile Include="Geomatries\Tile\Tile.cpp" />
+    <ClCompile Include="Geomatries\Tile\TileSet.cpp" />
+    <ClCompile Include="Geomatries\Tile\TMap.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Systems\Graphics.h" />
+    <ClInclude Include="Systems\Keyboard.h" />
+    <ClInclude Include="Systems\Mouse.h" />
+    <ClInclude Include="Systems\Time.h" />
+    <ClInclude Include="Systems\Window.h" />
+    <ClInclude Include="Utilities\Gui.h" />
+    <ClInclude Include="Utilities\SingletonBase.h" />
+    <ClInclude Include="Framework.h" />
+    <ClInclude Include="Interfaces\IObject.h" />
+    <ClInclude Include="Renders\IA\VertexBuffer.h" />
+    <ClInclude Include="Renders\IA\IndexBuffer.h" />
+    <ClInclude Include="Renders\IA\InputLayout.h" />
+    <ClInclude Include="Renders\Resources\VertexType.h" />
+    <ClInclude Include="Renders\Resources\ShaderBuffer.h" />
+    <ClInclude Include="Renders\Resources\GlobalBuffer.h" />
+    <ClInclude Include="Renders\Shaders\IShader.h" />
+    <ClInclude Include="Renders\Shaders\VertexShader.h" />
+    <ClInclude Include="Renders\Shaders\PixelShader.h" />
+    <ClInclude Include="Geomatries\Rect.h" />
+    <ClInclude Include="Utilities\BoundingBox.h" />
+    <ClInclude Include="Utilities\Random.h" />
+    <ClInclude Include="Geomatries\TextureRect.h" />
+    <ClInclude Include="Geomatries\ShadedTexture.h" />
+    <ClInclude Include="Utilities\Path.h" />
+    <ClInclude Include="Utilities\String.h" />
+    <ClInclude Include="Renders\States.h" />
+    <ClInclude Include="Utilities\Animator.h" />
+    <ClInclude Include="Renders\Resources\Texture2D.h" />
+    <ClInclude Include="Geomatries\AnimationRect.h" />
+    <ClInclude Include="Characters\Wolf.h" />
+    <ClInclude Include="Systems\Camera.h" />
+    <ClInclude Include="Systems\Sounds.h" />
+    <ClInclude Include="Utilities\DirectHelper.h" />
+    <ClInclude Include="Utilities\FileStream.h" />
+    <ClInclude Include="Geomatries\Tile\Tile.h" />
+    <ClInclude Include="Geomatries\Tile\TileSet.h" />
+    <ClInclude Include="Geomatries\Tile\TMap.h" />
+  </ItemGroup>
+</Project>
