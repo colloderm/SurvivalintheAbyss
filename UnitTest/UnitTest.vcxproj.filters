@@ -9,6 +9,8 @@
     <ClInclude Include="Demos\03_ShadedDemo.h" />
     <ClInclude Include="Demos\04_AnimDemo.h" />
     <ClInclude Include="Demos\05_TileDemo.h" />
+    <ClInclude Include="Demos\PlayerAsset.h" />
+    <ClInclude Include="Demos\MonsterAsset.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Program.cpp" />
@@ -18,5 +20,7 @@
     <ClCompile Include="Demos\03_ShadedDemo.cpp" />
     <ClCompile Include="Demos\04_AnimDemo.cpp" />
     <ClCompile Include="Demos\05_TileDemo.cpp" />
+    <ClCompile Include="Demos\PlayerAsset.cpp" />
+    <ClCompile Include="Demos\MonsterAsset.cpp" />
   </ItemGroup>
 </Project>

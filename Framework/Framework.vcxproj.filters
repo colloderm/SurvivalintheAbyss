@@ -34,6 +34,12 @@
     <ClCompile Include="Geomatries\Tile\Tile.cpp" />
     <ClCompile Include="Geomatries\Tile\TileSet.cpp" />
     <ClCompile Include="Geomatries\Tile\TMap.cpp" />
+    <ClCompile Include="Characters\Player.cpp" />
+    <ClCompile Include="Manager\PlayerPassive.cpp" />
+    <ClCompile Include="Characters\Monster\Common\Zombie.cpp" />
+    <ClCompile Include="Characters\Monster\Common\Skeleton.cpp" />
+    <ClCompile Include="Characters\Monster\Common\Slime.cpp" />
+    <ClCompile Include="Characters\Monster\Boss\Minotaur.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Systems\Graphics.h" />
@@ -73,5 +79,12 @@
     <ClInclude Include="Geomatries\Tile\Tile.h" />
     <ClInclude Include="Geomatries\Tile\TileSet.h" />
     <ClInclude Include="Geomatries\Tile\TMap.h" />
+    <ClInclude Include="Characters\Player.h" />
+    <ClInclude Include="Manager\PlayerPassive.h" />
+    <ClInclude Include="Manager\CharacterManager.h" />
+    <ClInclude Include="Characters\Monster\Common\Zombie.h" />
+    <ClInclude Include="Characters\Monster\Common\Skeleton.h" />
+    <ClInclude Include="Characters\Monster\Common\Slime.h" />
+    <ClInclude Include="Characters\Monster\Boss\Minotaur.h" />
   </ItemGroup>
 </Project>

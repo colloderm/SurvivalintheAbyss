@@ -153,6 +153,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Characters\Monster\Boss\Minotaur.cpp" />
+    <ClCompile Include="Characters\Monster\Common\Skeleton.cpp" />
+    <ClCompile Include="Characters\Monster\Common\Slime.cpp" />
+    <ClCompile Include="Characters\Monster\Common\Zombie.cpp" />
     <ClCompile Include="Characters\Wolf.cpp" />
     <ClCompile Include="Framework.cpp" />
     <ClCompile Include="Geomatries\AnimationRect.cpp" />
@@ -162,6 +166,8 @@
     <ClCompile Include="Geomatries\Tile\Tile.cpp" />
     <ClCompile Include="Geomatries\Tile\TileSet.cpp" />
     <ClCompile Include="Geomatries\Tile\TMap.cpp" />
+    <ClCompile Include="Characters\Player.cpp" />
+    <ClCompile Include="Manager\PlayerPassive.cpp" />
     <ClCompile Include="Renders\IA\IndexBuffer.cpp" />
     <ClCompile Include="Renders\IA\InputLayout.cpp" />
     <ClCompile Include="Renders\IA\VertexBuffer.cpp" />
@@ -188,6 +194,10 @@
     <ClCompile Include="Utilities\String.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Characters\Monster\Boss\Minotaur.h" />
+    <ClInclude Include="Characters\Monster\Common\Skeleton.h" />
+    <ClInclude Include="Characters\Monster\Common\Slime.h" />
+    <ClInclude Include="Characters\Monster\Common\Zombie.h" />
     <ClInclude Include="Characters\Wolf.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="Geomatries\AnimationRect.h" />
@@ -198,6 +208,9 @@
     <ClInclude Include="Geomatries\Tile\TileSet.h" />
     <ClInclude Include="Geomatries\Tile\TMap.h" />
     <ClInclude Include="Interfaces\IObject.h" />
+    <ClInclude Include="Characters\Player.h" />
+    <ClInclude Include="Manager\CharacterManager.h" />
+    <ClInclude Include="Manager\PlayerPassive.h" />
     <ClInclude Include="Renders\IA\IndexBuffer.h" />
     <ClInclude Include="Renders\IA\InputLayout.h" />
     <ClInclude Include="Renders\IA\VertexBuffer.h" />

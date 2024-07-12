@@ -106,6 +106,7 @@ typedef UINT		uint;
 #include "Utilities/FileStream.h"
 
 #include "Systems/Camera.h"
+#include "Manager/CharacterManager.h"
 
 //창크기 지정
 #define WinMaxWidth 1280

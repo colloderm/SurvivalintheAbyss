@@ -9,6 +9,8 @@
 #include "Demos/03_ShadedDemo.h"
 #include "Demos/04_AnimDemo.h"
 #include "Demos/05_TileDemo.h"
+#include "Demos/PlayerAsset.h"
+#include "Demos/MonsterAsset.h"
 
 
 void Program::Init()
@@ -22,6 +24,9 @@ void Program::Init()
 	// Push(new ShadedDemo);
 	// Push(new AnimDemo);
 	// Push(new TileDemo);
+
+	//Push(new PlayerAsset);
+	Push(new MonsterAsset);
 }
 
 void Program::Destroy()
