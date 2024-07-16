@@ -146,24 +146,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Demos\00_RectDemo.h" />
-    <ClInclude Include="Demos\01_CollisionDemo.h" />
-    <ClInclude Include="Demos\02_TextureDemo.h" />
-    <ClInclude Include="Demos\03_ShadedDemo.h" />
-    <ClInclude Include="Demos\04_AnimDemo.h" />
-    <ClInclude Include="Demos\05_TileDemo.h" />
     <ClInclude Include="Demos\MonsterAsset.h" />
     <ClInclude Include="Demos\PlayerAsset.h" />
     <ClInclude Include="Program.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Demos\00_RectDemo.cpp" />
-    <ClCompile Include="Demos\01_CollisionDemo.cpp" />
-    <ClCompile Include="Demos\02_TextureDemo.cpp" />
-    <ClCompile Include="Demos\03_ShadedDemo.cpp" />
-    <ClCompile Include="Demos\04_AnimDemo.cpp" />
-    <ClCompile Include="Demos\05_TileDemo.cpp" />
     <ClCompile Include="Demos\MonsterAsset.cpp" />
     <ClCompile Include="Demos\PlayerAsset.cpp" />
     <ClCompile Include="Program.cpp" />

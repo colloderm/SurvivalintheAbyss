@@ -5,6 +5,18 @@ Slime::Slime(Vector3 position, Vector3 size)
 {
 	slime = new AnimationRect(position, size);
 	animator = new Animator();
+	ChaseRect = new Rect(Vector3(slime->GetPosition().x, slime->GetPosition().y - 2, 0), Vector3(150, 150, 1));
+	DmgRect = new Rect(Vector3(slime->GetPosition().x, slime->GetPosition().y - 2, 0), Vector3(60, 40, 1));
+	DmgRect->SetColor(Color(1, 1, 1, 1));
+	AtkRect = new Rect(Vector3(slime->GetPosition().x, slime->GetPosition().y, 0), Vector3(80, 70, 1));
+	AtkRect->SetColor(Color(0, 0, 1, 1));
+
+	// 스탯
+	characterHp = 15;
+	characterAttack = 7;
+	characterDefence = 7;
+	characterSpeed = 1;
+	Gold = 20;
 
 	{
 		// 대기
@@ -67,23 +79,38 @@ Slime::Slime(Vector3 position, Vector3 size)
 
 	// 기본 애니메이션 설정
 	animator->SetCurrentAnimClip(L"IdleDR");
+	state = State::IDLE;
 
 	// 애니메이터 갈아끼우기
 	slime->SetAnimator(animator);
+
+	startPos = position;
 }
 
 Slime::~Slime()
 {
+	SAFE_DELETE(AtkRect);
+	SAFE_DELETE(DmgRect);
+	SAFE_DELETE(ChaseRect);
 	SAFE_DELETE(slime);
 }
 
 void Slime::Update()
 {
 	slime->Update();
+	ChaseRect->SetPosition(slime->GetPosition());
+	ChaseRect->Update();
+	DmgRect->SetPosition(slime->GetPosition());
+	DmgRect->Update();
+	AtkRect->SetPosition(slime->GetPosition());
+	AtkRect->Update();
 }
 
 void Slime::Render()
 {
+	ChaseRect->Render();
+	AtkRect->Render();
+	DmgRect->Render();
 	slime->Render();
 }
 

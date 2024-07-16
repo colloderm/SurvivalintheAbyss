@@ -4,10 +4,12 @@
 #include "Geomatries/ShadedTexture.h"
 #include "Manager/CharacterManager.h"
 #include "Characters/Monster/Common/Zombie.h"
-#include "Characters/Monster/Common/Skeleton.h"
+#include "Characters/Monster/Common/Goblin.h"
 #include "Characters/Monster/Common/Slime.h"
 
 #include "Characters/Monster/Boss/Minotaur.h"
+
+#include "Characters/Player.h"
 
 
 class MonsterAsset : public IObject
@@ -22,8 +24,10 @@ class MonsterAsset : public IObject
 
 private:
 	Zombie* zombie = nullptr;
-	Skeleton* skeleton = nullptr;
+	Goblin* goblin = nullptr;
 	Slime* slime = nullptr;
 
 	Minotaur* minotaur = nullptr;
+
+	Rect* Target = nullptr;
 };

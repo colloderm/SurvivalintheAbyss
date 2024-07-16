@@ -5,6 +5,18 @@ Minotaur::Minotaur(Vector3 position, Vector3 size)
 {
 	minotaur = new AnimationRect(position, size);
 	animator = new Animator();
+	ChaseRect = new Rect(Vector3(minotaur->GetPosition().x, minotaur->GetPosition().y + 20, 0), Vector3(300, 300, 1));
+	DmgRect = new Rect(Vector3(minotaur->GetPosition().x, minotaur->GetPosition().y + 20, 0), Vector3(110, 65, 1));
+	DmgRect->SetColor(Color(1, 1, 1, 1));
+	AtkRect = new Rect(Vector3(minotaur->GetPosition().x, minotaur->GetPosition().y + 20, 0), Vector3(130, 90, 1));
+	AtkRect->SetColor(Color(0, 0, 1, 1));
+
+	// 스탯
+	characterHp = 100;
+	characterAttack = 15;
+	characterDefence = 15;
+	characterSpeed = 2;
+	Gold = 200;
 
 	{
 		// 대기
@@ -99,23 +111,38 @@ Minotaur::Minotaur(Vector3 position, Vector3 size)
 
 	// 기본 애니메이션 설정
 	animator->SetCurrentAnimClip(L"IdleDR");
+	state = State::IDLE;
 
 	// 애니메이터 갈아끼우기
 	minotaur->SetAnimator(animator);
+
+	startPos = position;
 }
 
 Minotaur::~Minotaur()
 {
+	SAFE_DELETE(AtkRect);
+	SAFE_DELETE(DmgRect);
+	SAFE_DELETE(ChaseRect);
 	SAFE_DELETE(minotaur);
 }
 
 void Minotaur::Update()
 {
 	minotaur->Update();
+	ChaseRect->SetPosition(minotaur->GetPosition());
+	ChaseRect->Update();
+	DmgRect->SetPosition(minotaur->GetPosition());
+	DmgRect->Update();
+	AtkRect->SetPosition(minotaur->GetPosition());
+	AtkRect->Update();
 }
 
 void Minotaur::Render()
 {
+	ChaseRect->Render();
+	AtkRect->Render();
+	DmgRect->Render();
 	minotaur->Render();
 }
 

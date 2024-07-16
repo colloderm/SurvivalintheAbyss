@@ -6,9 +6,6 @@ void PlayerAsset::Init()
 	player = new Player({ 600, 360, 0 }, { 300, 300, 1 });
 	HpPotion = new ShadedTexture({ 400, 360, 0 }, { 50, 50, 1 }, 0.0f, TexturePath + L"Player/HpPotion.png");
 
-	int playerStat[] = { 20, 10, 10, 1.0, 0 };
-	player->SetStat(playerStat);
-
 	// 패시브 데이터 가져와서 추가하기
 	player->Hp("passive", 10);
 }

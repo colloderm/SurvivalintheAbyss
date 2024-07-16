@@ -250,109 +250,24 @@ string TextureRect::MakeLabel(string label)
 	return string();
 }
 
-void TextureRect::Move(int moveCheck)
+void TextureRect::MoveAction(int type, float move)
 {
-	if (moveCheck == 1)
+	if (type == 1)
 	{
-		if (bJump == false)
-		{
-			if (Keyboard::Get()->Down('S') || Keyboard::Get()->Down(VK_DOWN))
-			{
-				SetImage(TexturePath + L"Dino_D2.png");
-				size = Vector3(70, 40, 0);
-				position = Vector3(100, 100 + size.y / 2, 0);
-				bDown = true;
-			}
-			if (Keyboard::Get()->Up('S') || Keyboard::Get()->Up(VK_UP))
-			{
-				SetImage(TexturePath + L"Dino_Nonal.png");
-				size = Vector3(70, 80, 0);
-				position = Vector3(100, 95 + size.y / 2, 0);
-				bDown = false;
-			}
-			if (Keyboard::Get()->Press('S') || Keyboard::Get()->Press(VK_DOWN))
-			{
-				if (!bDown)
-				{
-					SetImage(TexturePath + L"Dino_D2.png");
-					size = Vector3(70, 40, 0);
-					position = Vector3(100, 100 + size.y / 2, 0);
-					bDown = true;
-				}
-			}
-		}
+		position.x += move * 20.0f * Time::Delta();
+	}
+	else if (type == 2)
+	{
+		position.x -= move * 20.0f * Time::Delta();
+	}
 
-
-
-		if (Keyboard::Get()->Down(VK_SPACE) ||
-			Keyboard::Get()->Down(VK_UP) ||
-			Keyboard::Get()->Down('W'))
-		{
-			if (jumpCount < 12 && bJump == false && bDown == false)
-			{
-
-				bJump = true;
-				if (jumpCount == 0) jumpStartY = position.y;
-				else if (jumpCount > 0)
-				{
-					uCurJumpT = 0;
-					dCurJumpT = 0 - (maxJumpT - dCurJumpT);
-					curJumpSpd = maxJumpSpd;
-					bFall = false;
-				}
-				jumpCount++;
-			}
-		}
-
-		if (bJump == true)
-		{
-			// 추락하고 있지 않다 == 상승중
-			if (bFall == false)
-			{
-				// 점프시간이 초과했다면
-				if (uCurJumpT >= maxJumpT)
-				{
-					uCurJumpT = 0.0f;
-
-					bFall = true;
-				}
-				else // 점프를 계속 해야한다면
-				{
-					curJumpSpd -= maxJumpSpd * Time::Delta();
-
-					position.y += curJumpSpd * 2.0f;
-
-					uCurJumpT += Time::Delta();
-				}
-			}
-			else // bFall == true // 하강중
-			{
-				if (dCurJumpT >= maxJumpT)
-				{
-					curJumpSpd = maxJumpSpd;
-					dCurJumpT = 0.0f;
-					position.y = jumpStartY;
-					jumpCount = 0;
-
-					bJump = false;
-					bFall = false;
-
-				}
-				else
-				{
-					curJumpSpd += maxJumpSpd * Time::Delta();
-
-					position.y -= curJumpSpd * 2.0f;
-
-					if (position.y <= jumpStartY)
-					{
-						position.y = jumpStartY;
-						dCurJumpT = maxJumpT;
-					}
-					dCurJumpT += Time::Delta();
-				}
-			}
-		}
+	if (type == 4)
+	{
+		position.y += move * 20.0f * Time::Delta();
+	}
+	else if (type == 5)
+	{
+		position.y -= move * 20.0f * Time::Delta();
 	}
 }
 

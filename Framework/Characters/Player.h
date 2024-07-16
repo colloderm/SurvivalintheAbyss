@@ -1,7 +1,8 @@
 #pragma once
 
-#include "../Geomatries/AnimationRect.h"
-#include "../Manager/CharacterManager.h"
+#include "Geomatries/AnimationRect.h"
+#include "Manager/CharacterManager.h"
+#include "Geomatries/Rect.h"
 
 class Player : public CharacterManager
 {
@@ -36,9 +37,16 @@ public:
 private:
 	AnimationRect* player = nullptr;
 	Animator* animator = nullptr;
+	Rect* ChaseRect = nullptr;
+	Rect* DmgRect = nullptr;
+	Rect* AtkRect = nullptr;
 
+	// (0 = 동, 1 = 서, 2 = 고정)
+	//int directionx = 0;
+	// (2 = 북, 3 = 남)
+	//int directiony = 0;
 	int direction = 0;
-	int potionCount;
+	int potionCount = 1;
 	bool dmg = false;
 	float stateTime = 0.0f;
 };

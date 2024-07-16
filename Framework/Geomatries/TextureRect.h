@@ -22,7 +22,7 @@ public:
 
 	string MakeLabel(string label);
 
-	void Move(int moveCheck);
+	void MoveAction(int type, float move);
 	void Move2(int move2Check);
 
 	void SetImage(wstring imagePath);

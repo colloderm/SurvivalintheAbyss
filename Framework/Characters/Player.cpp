@@ -6,6 +6,13 @@ Player::Player(Vector3 position, Vector3 size)
 	player = new AnimationRect(position, size);
 	animator = new Animator();
 
+	// Ω∫≈»
+	characterHp = 20;
+	characterAttack = 10;
+	characterDefence = 10;
+	characterSpeed = 1.0;
+	Gold = 0;
+
 	{
 		// ¥Î±‚
 		Texture2D* srcTex = new Texture2D(TexturePath + L"Player/swordman/PlayerIdleBT.png");

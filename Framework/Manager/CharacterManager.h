@@ -2,7 +2,18 @@
 
 #include "Framework.h";
 
-enum STAT
+enum class State
+{
+	NONE = -1,
+	IDLE,
+	WALK,
+	ATTACK,
+	DMG,
+	DIE,
+	MAX_VALUE
+};
+
+enum class STAT
 {
 	HP,
 	ATK,
@@ -18,6 +29,4 @@ struct CharacterManager
 	int characterDefence;
 	int characterSpeed;
 	int Gold;
-
-	void SetStat(int*);
 };

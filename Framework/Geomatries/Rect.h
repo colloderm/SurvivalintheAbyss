@@ -25,13 +25,15 @@ public:
 
 	string MakeLabel(string label);
 
-	void Move();
-	void Move2(int move2Check);
+	//void Move();
+	//void Move2(int move2Check);
+	void MoveAction(int type, float move);
 
 	BoundingBox* GetCollision() { return collision; }
 
 	void SetPosition(Vector3 position) { this->position = position; }
 	RectEdge* GetEdge() { return edge; }
+	Vector3 GetPosition() { return position; }
 
 private:
 	// 정점의 데이터

@@ -154,10 +154,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Characters\Monster\Boss\Minotaur.cpp" />
-    <ClCompile Include="Characters\Monster\Common\Skeleton.cpp" />
+    <ClCompile Include="Characters\Monster\Common\Goblin.cpp" />
     <ClCompile Include="Characters\Monster\Common\Slime.cpp" />
     <ClCompile Include="Characters\Monster\Common\Zombie.cpp" />
-    <ClCompile Include="Characters\Wolf.cpp" />
     <ClCompile Include="Framework.cpp" />
     <ClCompile Include="Geomatries\AnimationRect.cpp" />
     <ClCompile Include="Geomatries\Rect.cpp" />
@@ -195,10 +194,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Characters\Monster\Boss\Minotaur.h" />
-    <ClInclude Include="Characters\Monster\Common\Skeleton.h" />
+    <ClInclude Include="Characters\Monster\Common\Goblin.h" />
     <ClInclude Include="Characters\Monster\Common\Slime.h" />
     <ClInclude Include="Characters\Monster\Common\Zombie.h" />
-    <ClInclude Include="Characters\Wolf.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="Geomatries\AnimationRect.h" />
     <ClInclude Include="Geomatries\Rect.h" />

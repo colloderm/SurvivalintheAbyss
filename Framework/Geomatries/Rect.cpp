@@ -205,152 +205,173 @@ string Rect::MakeLabel(string label)
 	return Label;
 }
 
-void Rect::Move()
+void Rect::MoveAction(int type, float move)
 {
-	float mSpd = 100.0f;
-
-	if (Keyboard::Get()->Press('W'))
+	if (type == 0)
 	{
-		//위
-		position.y += mSpd * Time::Delta();
-
-		if (Keyboard::Get()->Press('S') && moveD == false)
-		{
-			position.y -= (mSpd * 2) * Time::Delta();
-		}
+		position.x += move * 20.0f * Time::Delta();
 	}
-	else if (Keyboard::Get()->Press('S'))
+	else if (type == 1)
 	{
-		//아래
-		position.y -= mSpd * Time::Delta();
-		moveD = true;
+		position.x -= move * 20.0f * Time::Delta();
 	}
 
-	if (Keyboard::Get()->Up('S')) moveD = false; //S키를 뗏다면(Up)
-
-	if (Keyboard::Get()->Press('A'))
+	if (type == 2)
 	{
-		// 왼쪽
-		position.x -= mSpd * Time::Delta();
-		if (Keyboard::Get()->Press('D') && moveR == false)
-		{
-			position.x += (mSpd * 2) * Time::Delta();
-		}
+		position.y += move * 20.0f * Time::Delta();
 	}
-	else if (Keyboard::Get()->Press('D'))
+	else if (type == 3)
 	{
-		// 오른쪽
-		position.x += mSpd * Time::Delta();
-		moveR = true;
-	}
-
-	if (Keyboard::Get()->Up('D')) moveR = false; //D키를 뗏다면(Up)
-
-	if (Keyboard::Get()->Down(VK_SPACE) && jumpCount < 2) // 연속점프일 때 시간은 안줘도 될..듯?
-	{
-		bJump = true;
-		if (jumpCount == 0) jumpStartY = position.y;
-		else if (jumpCount > 0)
-		{
-			uCurJumpT = 0;
-			dCurJumpT = 0 - (maxJumpT - dCurJumpT);
-			curJumpSpd = maxJumpSpd;
-			bFall = false;
-		}
-		jumpCount++;
-		
-		// 점프 만들기
-		/*
-		모든 점프는 기본적으로 bool 값을 이용해 특정 키가 눌렸을 때 
-		해당 bool값을 true로 바꾸며 해당 bool값이 true일 때 점프를 실행하는 것을 기본으로 둔다.
-
-		만약, 점프를 누르고 있는 동안 점프의 높이가 점점 증가하는 방식의 점프를 만들고 싶다면 bool값을 사용하지 않아도 된다. // 과제아님
-
-		점프를 만드는법 
-		1. 점프 시간 이용하기 // 일정한 시간의 점프 구현 가능
-		1) 특정 키를 눌렀을 경우 일정 시간동안 위로 간다. (Time::Delta를 계속 특정 변수에 더하다가 해당 변수의 값이 1이 넘엇다면 1초가 지난것)
-		2) 일정 시간이 지난 후 다시 일정 시간동안 내려온다.
-
-		2. 중력 이용하기 // 감속 가속이 있는 점프 구현 가능
-		1) 특정 키를 눌렀을 경우 중력변수 값 만큼 이동을 시작
-		2) 시간이 지남에 따라 지속적으로 중력변수의 값을 - 시킨다.
-		3) 일정 시간이 지나면 중력변수의 값은 결국 음수로 바뀌며 아래로 내려갈 것이다.
-
-		3. 특정 거리까지 이동하기 // 목적지 도달이 쉬운 점프 구현 가능
-		1) 특정 키를 눌렀을 때 이동할 위치 결정
-		2) 해당 위치에 도달할 때 까지 이동
-		3) 해당 위치 도달 후 다시 원래 위치로 이동
-		*/
-	}
-
-	if (bJump)
-	{
-		// 추락하고 있지 않다 == 상승중
-		if (bFall == false)
-		{
-			// 점프시간이 초과했다면
-			if(uCurJumpT >= maxJumpT)
-			{
-				uCurJumpT = 0.0f;
-				bFall = true;
-			}
-			else // 점프를 계속 해야한다면
-			{
-				curJumpSpd -= maxJumpSpd * Time::Delta();
-				position.y += curJumpSpd;
-				uCurJumpT += Time::Delta();
-			}
-		}
-		else // bFall == true // 하강중
-		{
-			if (dCurJumpT >= maxJumpT)
-			{
-				curJumpSpd = maxJumpSpd;
-				dCurJumpT = 0.0f;
-				position.y = jumpStartY;
-				jumpCount = 0;
-
-				bJump = false;
-				bFall = false;
-			}
-			else
-			{
-				curJumpSpd += maxJumpSpd * Time::Delta();
-				position.y -= curJumpSpd;
-				if (position.y <= jumpStartY)
-				{
-					position.y = jumpStartY;
-					dCurJumpT = maxJumpT;
-				}
-				dCurJumpT += Time::Delta();
-			}
-		}
-
-		/*jumpT += Time::Delta();
-		if (jumpT <= 1)
-		{
-			position.y += 200.0f * Time::Delta();
-		}
-		else
-		{
-			position.y -= 200.0f * Time::Delta();
-			if (jumpT >= 2)
-			{
-				bJump = false;
-				jumpT = 0;
-			}
-		}*/
+		position.y -= move * 20.0f * Time::Delta();
 	}
 }
 
-void Rect::Move2(int move2Check)
-{
-	if (move2Check == 1)
-	{
-		position.x -= 300.0f * Time::Delta();
-		if (position.x <= -300)
-		{
-			position.x = (float)Random::GetRandomInt(1500, 2500);
-		}
-	}
-}
+//void Rect::Move()
+//{
+//	float mSpd = 100.0f;
+//
+//	if (Keyboard::Get()->Press('W'))
+//	{
+//		//위
+//		position.y += mSpd * Time::Delta();
+//
+//		if (Keyboard::Get()->Press('S') && moveD == false)
+//		{
+//			position.y -= (mSpd * 2) * Time::Delta();
+//		}
+//	}
+//	else if (Keyboard::Get()->Press('S'))
+//	{
+//		//아래
+//		position.y -= mSpd * Time::Delta();
+//		moveD = true;
+//	}
+//
+//	if (Keyboard::Get()->Up('S')) moveD = false; //S키를 뗏다면(Up)
+//
+//	if (Keyboard::Get()->Press('A'))
+//	{
+//		// 왼쪽
+//		position.x -= mSpd * Time::Delta();
+//		if (Keyboard::Get()->Press('D') && moveR == false)
+//		{
+//			position.x += (mSpd * 2) * Time::Delta();
+//		}
+//	}
+//	else if (Keyboard::Get()->Press('D'))
+//	{
+//		// 오른쪽
+//		position.x += mSpd * Time::Delta();
+//		moveR = true;
+//	}
+//
+//	if (Keyboard::Get()->Up('D')) moveR = false; //D키를 뗏다면(Up)
+//
+//	if (Keyboard::Get()->Down(VK_SPACE) && jumpCount < 2) // 연속점프일 때 시간은 안줘도 될..듯?
+//	{
+//		bJump = true;
+//		if (jumpCount == 0) jumpStartY = position.y;
+//		else if (jumpCount > 0)
+//		{
+//			uCurJumpT = 0;
+//			dCurJumpT = 0 - (maxJumpT - dCurJumpT);
+//			curJumpSpd = maxJumpSpd;
+//			bFall = false;
+//		}
+//		jumpCount++;
+//		
+//		// 점프 만들기
+//		/*
+//		모든 점프는 기본적으로 bool 값을 이용해 특정 키가 눌렸을 때 
+//		해당 bool값을 true로 바꾸며 해당 bool값이 true일 때 점프를 실행하는 것을 기본으로 둔다.
+//
+//		만약, 점프를 누르고 있는 동안 점프의 높이가 점점 증가하는 방식의 점프를 만들고 싶다면 bool값을 사용하지 않아도 된다. // 과제아님
+//
+//		점프를 만드는법 
+//		1. 점프 시간 이용하기 // 일정한 시간의 점프 구현 가능
+//		1) 특정 키를 눌렀을 경우 일정 시간동안 위로 간다. (Time::Delta를 계속 특정 변수에 더하다가 해당 변수의 값이 1이 넘엇다면 1초가 지난것)
+//		2) 일정 시간이 지난 후 다시 일정 시간동안 내려온다.
+//
+//		2. 중력 이용하기 // 감속 가속이 있는 점프 구현 가능
+//		1) 특정 키를 눌렀을 경우 중력변수 값 만큼 이동을 시작
+//		2) 시간이 지남에 따라 지속적으로 중력변수의 값을 - 시킨다.
+//		3) 일정 시간이 지나면 중력변수의 값은 결국 음수로 바뀌며 아래로 내려갈 것이다.
+//
+//		3. 특정 거리까지 이동하기 // 목적지 도달이 쉬운 점프 구현 가능
+//		1) 특정 키를 눌렀을 때 이동할 위치 결정
+//		2) 해당 위치에 도달할 때 까지 이동
+//		3) 해당 위치 도달 후 다시 원래 위치로 이동
+//		*/
+//	}
+//
+//	if (bJump)
+//	{
+//		// 추락하고 있지 않다 == 상승중
+//		if (bFall == false)
+//		{
+//			// 점프시간이 초과했다면
+//			if(uCurJumpT >= maxJumpT)
+//			{
+//				uCurJumpT = 0.0f;
+//				bFall = true;
+//			}
+//			else // 점프를 계속 해야한다면
+//			{
+//				curJumpSpd -= maxJumpSpd * Time::Delta();
+//				position.y += curJumpSpd;
+//				uCurJumpT += Time::Delta();
+//			}
+//		}
+//		else // bFall == true // 하강중
+//		{
+//			if (dCurJumpT >= maxJumpT)
+//			{
+//				curJumpSpd = maxJumpSpd;
+//				dCurJumpT = 0.0f;
+//				position.y = jumpStartY;
+//				jumpCount = 0;
+//
+//				bJump = false;
+//				bFall = false;
+//			}
+//			else
+//			{
+//				curJumpSpd += maxJumpSpd * Time::Delta();
+//				position.y -= curJumpSpd;
+//				if (position.y <= jumpStartY)
+//				{
+//					position.y = jumpStartY;
+//					dCurJumpT = maxJumpT;
+//				}
+//				dCurJumpT += Time::Delta();
+//			}
+//		}
+//
+//		/*jumpT += Time::Delta();
+//		if (jumpT <= 1)
+//		{
+//			position.y += 200.0f * Time::Delta();
+//		}
+//		else
+//		{
+//			position.y -= 200.0f * Time::Delta();
+//			if (jumpT >= 2)
+//			{
+//				bJump = false;
+//				jumpT = 0;
+//			}
+//		}*/
+//	}
+//}
+//
+//void Rect::Move2(int move2Check)
+//{
+//	if (move2Check == 1)
+//	{
+//		position.x -= 300.0f * Time::Delta();
+//		if (position.x <= -300)
+//		{
+//			position.x = (float)Random::GetRandomInt(1500, 2500);
+//		}
+//	}
+//}
