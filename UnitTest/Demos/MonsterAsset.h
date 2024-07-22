@@ -29,5 +29,5 @@ private:
 
 	Minotaur* minotaur = nullptr;
 
-	Rect* Target = nullptr;
+	Player* player = nullptr;
 };

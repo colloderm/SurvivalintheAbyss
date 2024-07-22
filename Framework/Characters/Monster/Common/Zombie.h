@@ -18,11 +18,17 @@ public:
 	void Attack();
 	void Defence();
 
+	Rect* GetDmgRect() { return DmgRect; }
+
+	void SetPosition(Vector3 position) { zombie->SetPosition(position); }
+	void SetTarget(Rect* target) { this->Target = target; }
+
 private:
 	AnimationRect* zombie = nullptr;
 	Animator* animator = nullptr;
 	Rect* ChaseRect = nullptr;
 	Rect* DmgRect = nullptr;
+	Rect* AtkRangeRect = nullptr;
 	Rect* AtkRect = nullptr;
 
 	Rect* Target = nullptr;
@@ -42,4 +48,6 @@ private:
 	bool dmg = false;
 
 	float stateTime = 0.0f;
+
+	bool isAttack = false;
 };

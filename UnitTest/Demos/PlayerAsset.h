@@ -4,6 +4,9 @@
 #include "Characters/Player.h"
 #include "Geomatries/ShadedTexture.h"
 #include "Manager/CharacterManager.h"
+#include "Manager/PlayerPassive.h"
+
+#include "Characters/Monster/Common/Zombie.h"
 
 class PlayerAsset : public IObject
 {
@@ -18,6 +21,10 @@ class PlayerAsset : public IObject
 private:
 	Player* player = nullptr;
 	ShadedTexture* HpPotion = nullptr;
+
+	PlayerPassive* pPassive = nullptr;
+
+	Zombie* zombie = nullptr;
 
 	int potionCount = 1;
 };

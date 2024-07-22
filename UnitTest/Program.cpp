@@ -12,8 +12,8 @@ void Program::Init()
 	States::Create();
 	Camera::Create();
 
-	//Push(new PlayerAsset);
-	Push(new MonsterAsset);
+	Push(new PlayerAsset);
+	//Push(new MonsterAsset);
 }
 
 void Program::Destroy()

@@ -116,5 +116,6 @@ const wstring ShaderPath = L"../_Shaders/";
 const wstring TexturePath = L"../_Textures/";
 const wstring SoundPath = L"../_Sounds/";
 const string TilePath = "../_TileData/";
+const string PsvPath = "../_PsvData/";
 
 extern HWND handle;

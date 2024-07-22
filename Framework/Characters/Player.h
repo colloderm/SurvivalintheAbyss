@@ -3,6 +3,7 @@
 #include "Geomatries/AnimationRect.h"
 #include "Manager/CharacterManager.h"
 #include "Geomatries/Rect.h"
+#include "Manager/PlayerPassive.h"
 
 class Player : public CharacterManager
 {
@@ -34,20 +35,30 @@ public:
 		(보고있는방향수시체크,)
 	*/
 
+	Rect* GetDmgRect() { return DmgRect; }
+
+	void SetPosition(Vector3 position) { player->SetPosition(position); }
+	void SetTarget(Rect* target) { this->Monster = target; }
+
+	void SetPassive(PlayerPassive* Psv);
+
 private:
 	AnimationRect* player = nullptr;
 	Animator* animator = nullptr;
-	Rect* ChaseRect = nullptr;
 	Rect* DmgRect = nullptr;
+	Rect* AtkRangeRect = nullptr;
 	Rect* AtkRect = nullptr;
 
-	// (0 = 동, 1 = 서, 2 = 고정)
-	//int directionx = 0;
-	// (2 = 북, 3 = 남)
-	//int directiony = 0;
+	Rect* Monster = nullptr;
+
+	// (1 = 동, 2 = 서, 4 = 북, 5 = 남)
 	int direction = 0;
 	int potionCount = 1;
-	bool dmg = false;
 	float stateTime = 0.0f;
+	int hitHp;
+
+	bool isMove = false;
+	bool isAttack = false;
+	bool isDmg = false;
 };
 

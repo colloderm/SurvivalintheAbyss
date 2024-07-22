@@ -10,10 +10,15 @@ void MonsterAsset::Init()
 
 	// Boss
 	minotaur = new Minotaur({ 900, 200, 0 }, { 300, 300, 1 });
+
+	player = new Player({ 300,300,0 }, { 200,200,1 });
+
+	zombie->SetTarget(player->GetDmgRect());
 }
 
 void MonsterAsset::Destroy()
 {
+	SAFE_DELETE(player);
 	SAFE_DELETE(minotaur);
 	SAFE_DELETE(slime);
 	SAFE_DELETE(goblin);
@@ -23,6 +28,8 @@ void MonsterAsset::Destroy()
 void MonsterAsset::Update()
 {
 
+	if (Mouse::Get()->Press(0x0000))
+		player->SetPosition(Camera::Get()->GetMPosition());
 	goblin->Move();
 	goblin->Attack();
 	goblin->Defence();
@@ -40,10 +47,12 @@ void MonsterAsset::Update()
 	slime->Update();
 
 	minotaur->Update();
+	player->Update();
 }
 
 void MonsterAsset::Render()
 {
+	player->Render();
 	zombie->Render();
 	//goblin->Render();
 	//slime->Render();

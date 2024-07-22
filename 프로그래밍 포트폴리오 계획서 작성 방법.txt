@@ -11,6 +11,13 @@ https://github.com/Red-Opera/D2DGame (탑뷰의 게임)
  > 나는: 시작맵 - 던전1 (- 던전2) - 강화맵 - 보스 (- 시작맵 로테이션)
  > 플레이어 매니저에 강화시킨 패시브 저장해서 플레이 할때마다 패시브 적용
 
+ >> 탑뷰 형태?
+ >> 리소스는 몇가지 있긴한데...
+ >> 플레이어&몬스터 매니저 구성은 어떻게 해야하나?
+
+https://github.com/Red-Opera/D2DGame
+https://github.com/KkyuCone/DirectX2D_MSJ_PO
+https://hanil2.tistory.com/category/DX11%202D%20Game%20Programming
 
 게임 이름 : <-생각 보다 중요함 ( 모작도 적으셈 )
 게임 장르 : // 있으나 없으나 이긴함
@@ -23,7 +30,7 @@ https://github.com/Red-Opera/D2DGame (탑뷰의 게임)
 개발 인원 : // 팀 구성, 혼자면 1인 개발(본인 이름)
 
 ============ 기본 정보 // PPT 1 & 2페이지에 들어감
-
+키보드/마우스 = wasd/space/LShift/
 게임 시스템 설명
 
 1. 플레이어 // 반드시 1순위

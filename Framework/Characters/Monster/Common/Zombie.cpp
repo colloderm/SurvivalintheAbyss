@@ -8,8 +8,10 @@ Zombie::Zombie(Vector3 position, Vector3 size)
 	ChaseRect = new Rect(Vector3(zombie->GetPosition().x, zombie->GetPosition().y, 0), Vector3(150, 150, 1));
 	DmgRect = new Rect(Vector3(zombie->GetPosition().x, zombie->GetPosition().y, 0), Vector3(60, 40, 1));
 	DmgRect->SetColor(Color(1, 1, 1, 1));
-	AtkRect = new Rect(Vector3(zombie->GetPosition().x, zombie->GetPosition().y, 0), Vector3(80, 70, 1));
-	AtkRect->SetColor(Color(0, 0, 1, 1));
+	AtkRangeRect = new Rect(Vector3(zombie->GetPosition().x, zombie->GetPosition().y, 0), Vector3(80, 70, 1));
+	AtkRangeRect->SetColor(Color(0, 0, 1, 1));
+	AtkRect = new Rect(Vector3(zombie->GetPosition().x, zombie->GetPosition().y, 0), Vector3(50, 50, 1));
+	AtkRect->SetColor(Color(1, 0, 1, 1));
 
 	Target = new Rect(Vector3(360, 150, 0), Vector3(60, 50, 1));
 	Target->SetColor(Color(0, 0, 0, 1));
@@ -102,8 +104,9 @@ Zombie::Zombie(Vector3 position, Vector3 size)
 
 Zombie::~Zombie()
 {
-	SAFE_DELETE(Target);
+	//SAFE_DELETE(Target);
 	SAFE_DELETE(AtkRect);
+	SAFE_DELETE(AtkRangeRect);
 	SAFE_DELETE(DmgRect);
 	SAFE_DELETE(ChaseRect);
 	SAFE_DELETE(zombie);
@@ -116,12 +119,22 @@ void Zombie::Update()
 	ChaseRect->Update();
 	DmgRect->SetPosition(zombie->GetPosition());
 	DmgRect->Update();
-	AtkRect->SetPosition(zombie->GetPosition());
+	AtkRangeRect->SetPosition(zombie->GetPosition());
+	AtkRangeRect->Update();
+
+	if ((directionx == 1 && directiony == 5) || (directionx == 1 && directiony == 6)) // 남동
+		AtkRect->SetPosition({ zombie->GetPosition().x + 20, zombie->GetPosition().y - 20, 1 });
+	else if ((directionx == 1 && directiony == 4) || (directionx == 3 && directiony == 4)) // 북동
+		AtkRect->SetPosition({ zombie->GetPosition().x + 20, zombie->GetPosition().y + 20, 1 });
+	else if ((directionx == 2 && directiony == 5) || (directionx == 2 && directiony == 6) || (directionx == 3 && directiony == 5)) // 남서
+		AtkRect->SetPosition({ zombie->GetPosition().x - 20, zombie->GetPosition().y - 20, 1 });
+	else if ((directionx == 2 && directiony == 4)) // 북서
+		AtkRect->SetPosition({ zombie->GetPosition().x - 20, zombie->GetPosition().y + 20, 1 });
 	AtkRect->Update();
 
-	if (Mouse::Get()->Press(0x0000))
-		Target->SetPosition(Camera::Get()->GetMPosition());
-	Target->Update();
+	/*if (Mouse::Get()->Press(0x0000))
+		Target->SetPosition(Camera::Get()->GetMPosition());*/
+	// Target->Update();
 
 	Move();
 }
@@ -129,11 +142,13 @@ void Zombie::Update()
 void Zombie::Render()
 {
 	ChaseRect->Render();
-	AtkRect->Render();
+	AtkRangeRect->Render();
+	if (isAttack)
+		AtkRect->Render();
 	DmgRect->Render();
 	zombie->Render();
 
-	Target->Render();
+	// Target->Render();
 }
 
 void Zombie::Move()
@@ -141,10 +156,11 @@ void Zombie::Move()
 	// 추격
 	if (BoundingBox::AABB(ChaseRect->GetCollision(), Target->GetCollision()))
 	{
-		if (BoundingBox::AABB(AtkRect->GetCollision(), Target->GetCollision()))
+		if (BoundingBox::AABB(AtkRangeRect->GetCollision(), Target->GetCollision()))
 		{
 			state = State::ATTACK;
 			stateTime = 0.0f;
+			isAttack = true;
 			Attack();
 		}
 		else
@@ -168,6 +184,8 @@ void Zombie::Move()
 				directiony = 5;
 			else if (movey == 0)
 				directiony = 6;
+
+			isAttack = false;
 		}
 	}
 	else
@@ -247,17 +265,17 @@ void Zombie::Move()
 		if (directionx == 1)
 		{
 			//cout << "동쪽 무빙, 상하체크 " << directiony << endl;
-			zombie->MoveAction(1, characterSpeed);
+			zombie->MoveAction(directionx, characterSpeed);
 			if (directiony == 4) // 상
 			{
 				if (directiony != 6)
-					zombie->MoveAction(4, characterSpeed);
+					zombie->MoveAction(directiony, characterSpeed);
 				zombie->GetAnimator()->SetCurrentAnimClip(L"WalkUR");
 			}
 			else if (directiony == 5) // 하
 			{
 				if (directiony != 6)
-					zombie->MoveAction(5, characterSpeed);
+					zombie->MoveAction(directiony, characterSpeed);
 				zombie->GetAnimator()->SetCurrentAnimClip(L"WalkDR");
 			}
 		}
@@ -265,17 +283,17 @@ void Zombie::Move()
 		if (directionx == 2)
 		{
 			//cout << "서쪽 무빙, 상하체크 " << directiony << endl;
-			zombie->MoveAction(2, characterSpeed);
+			zombie->MoveAction(directionx, characterSpeed);
 			if (directiony == 4) // 상
 			{
 				if (directiony != 6)
-					zombie->MoveAction(4, characterSpeed);
+					zombie->MoveAction(directiony, characterSpeed);
 				zombie->GetAnimator()->SetCurrentAnimClip(L"WalkUL");
 			}
 			else if (directiony == 5) // 하
 			{
 				if (directiony != 6)
-					zombie->MoveAction(5, characterSpeed);
+					zombie->MoveAction(directiony, characterSpeed);
 				zombie->GetAnimator()->SetCurrentAnimClip(L"WalkDL");
 			}
 		}
@@ -286,13 +304,13 @@ void Zombie::Move()
 			if (directiony == 4) // 상
 			{
 				if (directiony != 6)
-					zombie->MoveAction(4, characterSpeed);
+					zombie->MoveAction(directiony, characterSpeed);
 				zombie->GetAnimator()->SetCurrentAnimClip(L"WalkUL");
 			}
 			else if (directiony == 5) // 하
 			{
 				if (directiony != 6)
-					zombie->MoveAction(5, characterSpeed);
+					zombie->MoveAction(directiony, characterSpeed);
 				zombie->GetAnimator()->SetCurrentAnimClip(L"WalkDL");
 			}
 		}
@@ -310,22 +328,30 @@ void Zombie::Hp(string type, int hp)
 
 void Zombie::Attack()
 {
-	//cout << directionx << ", " << directiony << endl;
-	if ((directionx == 1 && directiony == 5) || (directionx == 1 && directiony == 6))
+	if (isAttack)
 	{
-		zombie->GetAnimator()->SetCurrentAnimClip(L"AttackDR");
-	}
-	else if ((directionx == 1 && directiony == 4) || (directionx == 3 && directiony == 4))
-	{
-		zombie->GetAnimator()->SetCurrentAnimClip(L"AttackUR");
-	}
-	else if ((directionx == 2 && directiony == 5) || (directionx == 2 && directiony == 6) || (directionx == 3 && directiony == 5))
-	{
-		zombie->GetAnimator()->SetCurrentAnimClip(L"AttackDL");
-	}
-	else if ((directionx == 2 && directiony == 4))
-	{
-		zombie->GetAnimator()->SetCurrentAnimClip(L"AttackUL");
+		//cout << directionx << ", " << directiony << endl;
+		if ((directionx == 1 && directiony == 5) || (directionx == 1 && directiony == 6))
+		{
+			zombie->GetAnimator()->SetCurrentAnimClip(L"AttackDR");
+		}
+		else if ((directionx == 1 && directiony == 4) || (directionx == 3 && directiony == 4))
+		{
+			zombie->GetAnimator()->SetCurrentAnimClip(L"AttackUR");
+		}
+		else if ((directionx == 2 && directiony == 5) || (directionx == 2 && directiony == 6) || (directionx == 3 && directiony == 5))
+		{
+			zombie->GetAnimator()->SetCurrentAnimClip(L"AttackDL");
+		}
+		else if ((directionx == 2 && directiony == 4))
+		{
+			zombie->GetAnimator()->SetCurrentAnimClip(L"AttackUL");
+		}
+
+		if (BoundingBox::AABB(AtkRect->GetCollision(), Target->GetCollision()))
+		{
+			dmg = characterAttack;
+		}
 	}
 }
 
