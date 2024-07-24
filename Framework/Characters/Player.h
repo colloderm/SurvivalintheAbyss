@@ -60,5 +60,8 @@ private:
 	bool isMove = false;
 	bool isAttack = false;
 	bool isDmg = false;
+
+	bool moveD = false;
+	bool moveR = false;
 };
 

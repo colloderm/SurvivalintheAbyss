@@ -207,22 +207,24 @@ string Rect::MakeLabel(string label)
 
 void Rect::MoveAction(int type, float move)
 {
-	if (type == 0)
+	float mSpd = 20.0f;
+
+	if (type == 1)
 	{
-		position.x += move * 20.0f * Time::Delta();
+		position.x += move * mSpd * Time::Delta();
 	}
-	else if (type == 1)
+	else if (type == 2)
 	{
-		position.x -= move * 20.0f * Time::Delta();
+		position.x -= move * mSpd * Time::Delta();
 	}
 
-	if (type == 2)
+	if (type == 4)
 	{
-		position.y += move * 20.0f * Time::Delta();
+		position.y += move * mSpd * Time::Delta();
 	}
-	else if (type == 3)
+	else if (type == 5)
 	{
-		position.y -= move * 20.0f * Time::Delta();
+		position.y -= move * mSpd * Time::Delta();
 	}
 }
 

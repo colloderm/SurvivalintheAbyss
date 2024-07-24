@@ -27,6 +27,6 @@ struct CharacterManager
 	int characterHp;
 	int characterAttack;
 	int characterDefence;
-	int characterSpeed;
+	float characterSpeed;
 	int Gold;
 };

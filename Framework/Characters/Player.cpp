@@ -4,6 +4,7 @@
 Player::Player(Vector3 position, Vector3 size)
 {
 	player = new AnimationRect(position, size);
+	player->SetSize(Vector3(150, 150, 1));
 	animator = new Animator();
 	DmgRect = new Rect(Vector3(player->GetPosition().x, player->GetPosition().y, 0), Vector3(60, 40, 1));
 	DmgRect->SetColor(Color(1, 1, 1, 1));
@@ -195,7 +196,7 @@ void Player::Move()
 	if (isAttack == false)
 	{
 		// °È±â
-		if (Keyboard::Get()->Press('S') || Keyboard::Get()->Press('s'))
+		/*if (Keyboard::Get()->Press('S') || Keyboard::Get()->Press('s'))
 		{
 			player->GetAnimator()->SetCurrentAnimClip(L"RunBT");
 			player->MoveAction(direction, characterSpeed);
@@ -214,7 +215,50 @@ void Player::Move()
 		{
 			player->GetAnimator()->SetCurrentAnimClip(L"RunRT");
 			player->MoveAction(direction, characterSpeed);
+		}*/
+
+		if (Keyboard::Get()->Press('W'))
+		{
+			//À§
+			player->GetAnimator()->SetCurrentAnimClip(L"RunUP");
+			player->MoveAction(4, characterSpeed);
+
+			if (Keyboard::Get()->Press('S') && moveD == false)
+			{
+				player->GetAnimator()->SetCurrentAnimClip(L"RunBT");
+				player->MoveAction(5, characterSpeed);
+			}
 		}
+		else if (Keyboard::Get()->Press('S'))
+		{
+			//¾Æ·¡
+			player->GetAnimator()->SetCurrentAnimClip(L"RunBT");
+			player->MoveAction(5, characterSpeed);
+			moveD = true;
+		}
+
+		if (Keyboard::Get()->Up('S')) moveD = false; //SÅ°¸¦ ¶Â´Ù¸é(Up)
+
+		if (Keyboard::Get()->Press('A'))
+		{
+			// ¿ÞÂÊ
+			player->GetAnimator()->SetCurrentAnimClip(L"RunLT");
+			player->MoveAction(2, characterSpeed);
+			if (Keyboard::Get()->Press('D') && moveR == false)
+			{
+				player->GetAnimator()->SetCurrentAnimClip(L"RunRT");
+				player->MoveAction(1, characterSpeed);
+			}
+		}
+		else if (Keyboard::Get()->Press('D'))
+		{
+			// ¿À¸¥ÂÊ
+			player->GetAnimator()->SetCurrentAnimClip(L"RunRT");
+			player->MoveAction(1, characterSpeed);
+			moveR = true;
+		}
+
+		if (Keyboard::Get()->Up('D')) moveR = false; //DÅ°¸¦ ¶Â´Ù¸é(Up)
 	}
 }
 
