@@ -80,4 +80,7 @@ private:
 
 	Tile** tiles = nullptr;
 	TileSet* tSet = nullptr;
+
+	ID3D11SamplerState* sampler = nullptr;
+	ID3D11BlendState* blend = nullptr;
 };

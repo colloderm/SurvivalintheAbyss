@@ -30,6 +30,9 @@ Camera::Camera()
 
 		vpb->SetProj(proj);
 	}
+
+	LTPos = Vector2(0, WinMaxHeight);
+	RBPos = Vector2(WinMaxWidth, 0);
 }
 
 Camera::~Camera()
@@ -50,6 +53,23 @@ void Camera::Render()
 
 void Camera::Move()
 {
+	// 현재는 내가 움직여도 끝을 만나면 정지하도록
+	if (position.x <= LTPos.x)
+	{
+		position.x = LTPos.x;
+	}
+	if (position.y <= LTPos.y)
+	{
+		position.y = LTPos.y;
+	}
+	if (position.x > RBPos.x)
+	{
+		position.x = RBPos.x;
+	}
+	if (position.y > RBPos.y)
+	{
+		position.y = RBPos.y;
+	}
 	// 타겟이 있을경우
 	if (target != nullptr)
 	{
@@ -66,7 +86,6 @@ void Camera::Move()
 
 		if (bMove)
 		{
-			// 여기서 맵의 끝을 확인해서 더이상 이동이 안되도록 해야하는데 뗴잉..
 			if (Keyboard::Get()->Press('W'))
 				position.y += moveSpd * Time::Delta();
 			else if (Keyboard::Get()->Press('S'))

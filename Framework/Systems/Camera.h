@@ -32,8 +32,11 @@ private:
 
 	Vector3 position = Vector3(0, 0, 0);
 
-	bool bMove = false;
+	bool bMove = true;
 	float moveSpd = 250.0f;
 
 	TextureRect* target = nullptr;
+
+	Vector2 LTPos = Vector2(0, 0);
+	Vector2 RBPos = Vector2(0, 0);
 };

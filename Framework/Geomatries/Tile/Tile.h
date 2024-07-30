@@ -26,7 +26,7 @@ private:
 	Vector3 position = Values::ZeroVec3;
 
 	// 그림이 그려지지 않은 공간의 색
-	Color color = Values::Black;
+	Color color = Values::Magenta;
 
 	Vector2 startUV = Values::ZeroVec2;
 	Vector2 endUV = Values::ZeroVec2;

@@ -52,7 +52,7 @@ private:
 	Rect* Monster = nullptr;
 
 	// (1 = µ¿, 2 = ¼­, 4 = ºÏ, 5 = ³²)
-	int direction = 0;
+	int direction = 1;
 	int potionCount = 1;
 	float stateTime = 0.0f;
 	int hitHp;

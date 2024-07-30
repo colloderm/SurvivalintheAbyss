@@ -19,6 +19,10 @@ https://github.com/Red-Opera/D2DGame
 https://github.com/KkyuCone/DirectX2D_MSJ_PO
 https://hanil2.tistory.com/category/DX11%202D%20Game%20Programming
 
+4주차
+대기/던전/상점 맵 클래스 생성 및 타일맵 만들기
+
+
 게임 이름 : <-생각 보다 중요함 ( 모작도 적으셈 )
 게임 장르 : // 있으나 없으나 이긴함
 사용 엔진 : DirectX11 SDK, // 게임 전반적 시스템 구현

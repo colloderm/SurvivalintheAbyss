@@ -78,71 +78,73 @@ void PlayerAsset::GUI()
 
 		ImGui::Text("#################################");
 
-		// HP
-		
-		if (pPassive->GetIncHpCount() < 10 && ImGui::Button("Increase HP"))
-		{
-			pPassive->SetIncHpCount(1);
-			pPassive->SetIncHp(10);
-		}
-		ImGui::SameLine();
-		if (pPassive->GetIncHpCount() > 0 && ImGui::Button("Decrease HP"))
-		{
-			pPassive->SetIncHpCount(-1);
-			pPassive->SetIncHp(-10);
-		}
-		ImGui::SameLine();
-		ImGui::Text("HP: %d / HPCount: %d", pPassive->GetPsvHp(), pPassive->GetIncHpCount());
+		/*if (pPassive->PsvCount() > 0)
+		{*/
+			// HP
+			if (pPassive->GetIncHpCount() < 10 && ImGui::Button("Increase HP"))
+			{
+				pPassive->SetIncHpCount(1);
+				pPassive->SetIncHp(10);
+			}
+			ImGui::SameLine();
+			if (pPassive->GetIncHpCount() > 0 && ImGui::Button("Decrease HP"))
+			{
+				pPassive->SetIncHpCount(-1);
+				pPassive->SetIncHp(-10);
+			}
+			ImGui::SameLine();
+			ImGui::Text("HP: %d / HPCount: %d", pPassive->GetPsvHp(), pPassive->GetIncHpCount());
 
-		// Attack
-		if (pPassive->GetIncAtkCount() < 10 && ImGui::Button("Increase Attack"))
-		{
-			pPassive->SetIncAtkCount(1);
-			pPassive->SetIncAtk(5);
-		}
-		ImGui::SameLine();
-		if (pPassive->GetIncAtkCount() > 0 && ImGui::Button("Decrease Attack"))
-		{
-			pPassive->SetIncAtkCount(-1);
-			pPassive->SetIncAtk(-5);
-		}
-		ImGui::SameLine();
-		ImGui::Text("Attack: %d / AttackCount: %d", pPassive->GetPsvAtk(), pPassive->GetIncAtkCount());
+			// Attack
+			if (pPassive->GetIncAtkCount() < 10 && ImGui::Button("Increase Attack"))
+			{
+				pPassive->SetIncAtkCount(1);
+				pPassive->SetIncAtk(5);
+			}
+			ImGui::SameLine();
+			if (pPassive->GetIncAtkCount() > 0 && ImGui::Button("Decrease Attack"))
+			{
+				pPassive->SetIncAtkCount(-1);
+				pPassive->SetIncAtk(-5);
+			}
+			ImGui::SameLine();
+			ImGui::Text("Attack: %d / AttackCount: %d", pPassive->GetPsvAtk(), pPassive->GetIncAtkCount());
 
-		// Defence
-		if (pPassive->GetIncDefCount() < 10 && ImGui::Button("Increase Defence"))
-		{
-			pPassive->SetIncDefCount(1);
-			pPassive->SetIncDef(5);
-		}
-		ImGui::SameLine();
-		if (pPassive->GetIncDefCount() > 0 && ImGui::Button("Decrease Defence"))
-		{
-			pPassive->SetIncDefCount(-1);
-			pPassive->SetIncDef(-5);
-		}
-		ImGui::SameLine();
-		ImGui::Text("Defence: %d / DefenceCount: %d", pPassive->GetPsvDef(), pPassive->GetIncDefCount());
+			// Defence
+			if (pPassive->GetIncDefCount() < 10 && ImGui::Button("Increase Defence"))
+			{
+				pPassive->SetIncDefCount(1);
+				pPassive->SetIncDef(5);
+			}
+			ImGui::SameLine();
+			if (pPassive->GetIncDefCount() > 0 && ImGui::Button("Decrease Defence"))
+			{
+				pPassive->SetIncDefCount(-1);
+				pPassive->SetIncDef(-5);
+			}
+			ImGui::SameLine();
+			ImGui::Text("Defence: %d / DefenceCount: %d", pPassive->GetPsvDef(), pPassive->GetIncDefCount());
 
-		// Speed
-		if (pPassive->GetIncSpdCount() < 10 && ImGui::Button("Increase Speed"))
-		{
-			pPassive->SetIncSpdCount(1);
-			pPassive->SetIncSpd(0.2f);
-		}
-		ImGui::SameLine();
-		if (pPassive->GetIncSpdCount() > 0 && ImGui::Button("Decrease Speed"))
-		{
-			pPassive->SetIncSpdCount(-1);
-			pPassive->SetIncSpd(-0.2f);
-		}
-		ImGui::SameLine();
-		ImGui::Text("Speed: %.1f / SpeedCount: %d", pPassive->GetPsvSpd(), pPassive->GetIncSpdCount());
+			// Speed
+			if (pPassive->GetIncSpdCount() < 10 && ImGui::Button("Increase Speed"))
+			{
+				pPassive->SetIncSpdCount(1);
+				pPassive->SetIncSpd(0.2f);
+			}
+			ImGui::SameLine();
+			if (pPassive->GetIncSpdCount() > 0 && ImGui::Button("Decrease Speed"))
+			{
+				pPassive->SetIncSpdCount(-1);
+				pPassive->SetIncSpd(-0.2f);
+			}
+			ImGui::SameLine();
+			ImGui::Text("Speed: %.1f / SpeedCount: %d", pPassive->GetPsvSpd(), pPassive->GetIncSpdCount());
 
-		ImGui::Text("#################################");
+			ImGui::Text("#################################");
 
-		ImGui::Text("Monster");
-		ImGui::Text("HP : %d", zombie->characterHp);
+			ImGui::Text("Monster");
+			ImGui::Text("HP : %d", zombie->characterHp);
+		//}
 	}
 	ImGui::End();
 }

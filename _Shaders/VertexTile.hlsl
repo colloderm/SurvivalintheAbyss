@@ -69,7 +69,7 @@ float4 PS(PixelInput input) : SV_Target
     
     if (input.uv.x > 0.0f || input.uv.y > 0.0f)
     {
-        color = color; // 그림을 그리겠다.
+        // color = color; // 그림을 그리겠다.
         
         // discard는 해당 픽셀을 그리지 않겠다 라는 명령어이고
         // discard를 통해 지운부분은 뒤에 있는 그림도 볼 수 있다. // 0~1 // 0.01~0.99f
@@ -78,7 +78,11 @@ float4 PS(PixelInput input) : SV_Target
             discard;
     }
     else
+    {
         color = input.color; // 단색으로 칠하겠다.
+        if (color.r >= 0.99f && color.g <= 0.01f && color.b >= 0.99f) // 마젠타 색 (255, 0, 255)
+            discard;
+    }
     
     if (input.index == _index)
     {

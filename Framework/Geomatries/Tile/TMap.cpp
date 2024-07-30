@@ -35,6 +35,21 @@ TMap::TMap(uint width, uint height, uint spacing)
 
 	inb = new IndexNumBuffer();
 	inb->SetIndex(0);
+
+    // States ¼³Á¤
+    {
+        // Sampler
+        D3D11_SAMPLER_DESC sDesc;
+        States::GetSamplerDesc(&sDesc);
+        sDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
+        States::CreateSampler(&sDesc, &sampler);
+
+        // Blend
+        D3D11_BLEND_DESC bDesc;
+        States::GetBlendDesc(&bDesc);
+        bDesc.RenderTarget[0].BlendEnable = true;
+        States::CreateBlend(&bDesc, &blend);
+    }
 }
 
 TMap::~TMap()
@@ -118,6 +133,9 @@ void TMap::Render()
 	ps->SetShader();
 
 	DC->PSSetShaderResources(0, 1, &tSet->tileSRV);
+
+    DC->PSSetSamplers(0, 1, &sampler);
+    DC->OMSetBlendState(blend, nullptr, (UINT)0xFFFFFFFF);
 
 	for (uint y = 0; y < height; y++)
 	{

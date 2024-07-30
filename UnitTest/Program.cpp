@@ -5,6 +5,7 @@
 
 #include "Demos/PlayerAsset.h"
 #include "Demos/MonsterAsset.h"
+#include "Demos/StartStage.h"
 
 
 void Program::Init()
@@ -12,8 +13,10 @@ void Program::Init()
 	States::Create();
 	Camera::Create();
 
-	Push(new PlayerAsset);
-	//Push(new MonsterAsset);
+	// Push(new PlayerAsset);
+	// Push(new MonsterAsset);
+
+	Push(new StartStage);
 }
 
 void Program::Destroy()

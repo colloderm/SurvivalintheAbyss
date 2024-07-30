@@ -31,16 +31,20 @@ public:
 	int GetPsvDef() { return PsvDef; }
 	float GetPsvSpd() { return PsvSpd; }
 
-private:
-	int hpIncreaseCount = 0;
-	int attackIncreaseCount = 0;
-	int defenceIncreaseCount = 0;
-	int speedIncreaseCount = 0;
+	int PsvCount() { return playerPsvCount; }
 
-	int PsvHp = 0;
-	int PsvAtk = 0;
-	int PsvDef = 0;
-	float PsvSpd = 0.0f;
+private:
+	int playerPsvCount = 0;			// 플레이어가 소유한 업글가능 패시브 개수
+
+	int hpIncreaseCount = 0;		// Hp업한 count 수
+	int attackIncreaseCount = 0;	// Atk업한 count 수
+	int defenceIncreaseCount = 0;	// Def업한 count 수
+	int speedIncreaseCount = 0;		// Spd업한 count수
+
+	int PsvHp = 0;					// 플러스 되는 Hp 수치
+	int PsvAtk = 0;					// 플러스 되는 Atk 수치
+	int PsvDef = 0;					// 플러스 되는 Def 수치
+	float PsvSpd = 0.0f;			// 플러스 되는 Spd 수치
 
 	// SetPsv데이터 만들어서 능력치 얻으면 적용되도록 하기
 };
